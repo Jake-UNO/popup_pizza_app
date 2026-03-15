@@ -115,13 +115,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 MEDIA_ROOT = BASE_DIR
+MEDIA_ROOT = BASE_DIR
 MEDIA_URL = '/media/'
 
-if not DEBUG:
-    STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, "static")
-else:
-    STATIC_URL = '/static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # with products in the database when DEBUG = False
 # pythonanywhere should serve the static files automatically
 
