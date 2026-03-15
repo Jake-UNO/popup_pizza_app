@@ -19,9 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0ozmq)^ncdi3cs5@eq=af@n&p%r=#9pyuqc7h8yuk+=l*ivq)i'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -114,16 +114,13 @@ USE_TZ = True
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
-MEDIA_DIR = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = BASE_DIR
+MEDIA_URL = '/media/'
 
 if not DEBUG:
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR,"static")
-    MEDIA_ROOT = MEDIA_DIR
-    MEDIA_URL = '/media/'
-
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
 else:
-    MEDIA_URL = '/media/'
     STATIC_URL = '/static/'
 # with products in the database when DEBUG = False
 # pythonanywhere should serve the static files automatically
