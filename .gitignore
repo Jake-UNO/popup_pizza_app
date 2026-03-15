@@ -13,3 +13,5 @@ local_settings.py
 # ignore the files created for products added to the database
 media
 products
+staticfiles
+static/admin
