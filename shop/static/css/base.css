@@ -131,12 +131,10 @@ ul.errorlist {
 
 #header .logo {
     font-family: 'Ubuntu', sans-serif;
-    float:left;
     color:#333;
     font-size:22px;
-    margin-right:10%;
+    display:inline-block;
 }
-
 #subheader .cart {
     float:right;
     padding-top:4px;

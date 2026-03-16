@@ -3,25 +3,28 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>{% block title %}My Shop{% endblock %}</title>
+    <title>{% block title %}Popup Pizza{% endblock %}</title>
 
     <link href="{% static "css/base.css" %}" rel="stylesheet">
 </head>
 <body>
-<div id="header">
-    <a href="/" class="logo">My shop</a>
+<div id="header" style="text-align:center;">
+    <a href="/" class="logo">
+        <img src="/static/img/popup_pizza_pic.png" alt="Popup Pizza Logo" style="height:120px; vertical-align:middle;">
+        Popup Pizza
+    </a>
 </div>
 <div id="subheader">
     <div class="cart">
         {% with total_items=cart|length %}
             {% if cart|length > 0 %}
-                Your cart:
+                Order Summary:
                 <a href="{% url "cart:cart_detail" %}">
                     {{ total_items }} item{{ total_items|pluralize }},
                     ${{ cart.get_total_price }}
                 </a>
             {% else %}
-                Your cart is empty.
+                Ready to order? Your cart is empty.
             {% endif %}
         {% endwith %}
     </div>
