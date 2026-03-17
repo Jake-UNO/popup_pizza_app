@@ -12,7 +12,7 @@
     <ul>
       {% for item in cart %}
         <li>
-          {{ item.quantity }}x {{ item.product.name }}
+          {{ item.quantity }}x {{ item.product.product_name }}
           <span>${{ item.total_price }}</span>
         </li>
       {% endfor %}
@@ -20,27 +20,28 @@
     <p>Total: ${{ cart.get_total_price }}</p>
   </div>
 
- <form action="." method="post" class="order-form">
-  <p>
-    {{ form.first_name.label_tag }}
-    {{ form.first_name }}
-  </p>
+  <form action="." method="post" class="order-form">
+    <p>
+      {{ form.first_name.label_tag }}
+      {{ form.first_name }}
+    </p>
 
-  <p>
-    {{ form.last_name.label_tag }}
-    {{ form.last_name }}
-  </p>
+    <p>
+      {{ form.last_name.label_tag }}
+      {{ form.last_name }}
+    </p>
 
-  <p>
-    {{ form.email.label_tag }}
-    {{ form.email }}
-  </p>
+    <p>
+      {{ form.email.label_tag }}
+      {{ form.email }}
+    </p>
 
-  <p>
-    {{ form.pickup_slot.label_tag }}
-    {{ form.pickup_slot }}
-  </p>
+    <p>
+      {{ form.pickup_slot.label_tag }}
+      {{ form.pickup_slot }}
+    </p>
 
-  {% csrf_token %}
-  <p><input type="submit" value="Place order"></p>
-</form>
+    {% csrf_token %}
+    <p><input type="submit" value="Place order"></p>
+  </form>
+{% endblock %}

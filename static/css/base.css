@@ -81,25 +81,29 @@ td input[type="submit"] {
     padding:4px 10px;
 }
 
-form p label, form p input {
-    float:left;
-    clear:both;
+form p label,
+form p input,
+form p select {
+    float: left;
+    clear: both;
 }
 
 form p label {
-    font-size:14px;
-    padding-bottom:4px;
+    font-size: 14px;
+    padding-bottom: 4px;
 }
 
-form p input {
-    width:300px;
-    font-size:13px;
-    margin-bottom:10px;
-    padding:10px 12px;
-    border:0;
-    background:#efefef;
-    color:#666;
-    border-radius:4px;
+form p input,
+form p select {
+    width: 300px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    border: 0;
+    background: #efefef;
+    color: #666;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 ul.errorlist {
