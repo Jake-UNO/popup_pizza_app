@@ -20,9 +20,27 @@
     <p>Total: ${{ cart.get_total_price }}</p>
   </div>
 
-  <form action="." method="post" class="order-form">
-    {{ form.as_p }}
-    <p><input type="submit" value="Place order"></p>
-    {% csrf_token %}
-  </form>
-{% endblock %}
+ <form action="." method="post" class="order-form">
+  <p>
+    {{ form.first_name.label_tag }}
+    {{ form.first_name }}
+  </p>
+
+  <p>
+    {{ form.last_name.label_tag }}
+    {{ form.last_name }}
+  </p>
+
+  <p>
+    {{ form.email.label_tag }}
+    {{ form.email }}
+  </p>
+
+  <p>
+    {{ form.pickup_slot.label_tag }}
+    {{ form.pickup_slot }}
+  </p>
+
+  {% csrf_token %}
+  <p><input type="submit" value="Place order"></p>
+</form>
