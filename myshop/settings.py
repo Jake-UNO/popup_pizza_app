@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -102,6 +103,13 @@ STATICFILES_DIRS = [STATIC_DIR]
 # pythonanywhere should serve the static files automatically
 
 CART_SESSION_ID = 'cart'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/accounts/login/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'popuppizza@example.com'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

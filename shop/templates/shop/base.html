@@ -2,42 +2,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
     <title>{% block title %}Popup Pizza{% endblock %}</title>
-
     <link href="{% static "css/base.css" %}" rel="stylesheet">
 </head>
+
 <body>
-<div id="header" style="text-align:center;">
-    <a href="/" class="logo">
-        <img src="{% static 'img/popup_pizza_pic.png' %}" alt="Popup Pizza Logo" style="height:120px; vertical-align:middle;">
-        Popup Pizza
-    </a>
-</div>
-<div id="subheader">
-    <div class="cart">
-        {% with total_items=cart|length %}
-            {% if cart|length > 0 %}
-                Order Summary:
-                <a href="{% url "cart:cart_detail" %}">
-                    {{ total_items }} item{{ total_items|pluralize }},
-                    ${{ cart.get_total_price }}
-                </a>
-            {% else %}
-                Ready to order? Your cart is empty.
-            {% endif %}
-        {% endwith %}
+    <div id="header">
+        <a href="{% url 'shop:product_list' %}" class="logo">
+            Popup Pizza
+        </a>
     </div>
-</div>
-<div id="content">
-    {% block content %}
-    {% endblock %}
-</div>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
--->
+
+    <div id="subheader">
+        <div class="cart">
+            {% if request.user.is_authenticated %}
+                Welcome {{ request.user.username }} |
+
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background:none; border:none; color:#5993bb; padding:0; margin:0; font:inherit; cursor:pointer;">
+                        Logout
+                    </button>
+                </form>
+
+                {% if request.user.is_staff %}
+                    | <a href="/admin/">Admin</a>
+                {% endif %}
+
+                <br>
+                Order Summary:
+                {% if cart|length > 0 %}
+                    <a href="{% url 'cart:cart_detail' %}">
+                        {{ cart|length }} item{{ cart|length|pluralize }},
+                        ${{ cart.get_total_price }}
+                    </a>
+                {% else %}
+                    Your cart is empty.
+                {% endif %}
+            {% else %}
+                <a href="{% url 'login' %}">Login</a> |
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 </html>

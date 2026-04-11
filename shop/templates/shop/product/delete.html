@@ -1,0 +1,38 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+  Delete Product
+{% endblock %}
+
+{% block content %}
+  <h1>Delete Product</h1>
+
+  <p><strong>Warning:</strong> You are about to permanently delete <strong>{{ product.product_name }}</strong>.</p>
+  <p>This action cannot be undone.</p>
+  <p>To confirm, type <strong>DELETE</strong> below and then click the delete button.</p>
+
+  <form method="post" onsubmit="return confirmDelete();">
+    {% csrf_token %}
+
+    <p>
+      <label for="confirm_delete">Type DELETE to confirm:</label>
+      <input type="text" id="confirm_delete" name="confirm_delete">
+    </p>
+
+    <button type="submit" class="button delete-button">Yes, Delete Product</button>
+    <a href="{% url 'shop:product_detail' product.id %}" class="button light">Cancel</a>
+  </form>
+
+  <script>
+    function confirmDelete() {
+      const value = document.getElementById('confirm_delete').value.trim();
+
+      if (value !== 'DELETE') {
+        alert('You must type DELETE exactly to confirm.');
+        return false;
+      }
+
+      return confirm('Final warning: permanently delete this product?');
+    }
+  </script>
+{% endblock %}

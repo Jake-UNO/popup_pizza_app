@@ -1,0 +1,46 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+<h2>Register</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div style="margin-bottom: 15px;">
+        <label>Username:</label><br>
+        {{ form.username }}
+        <div style="font-size: 12px; color: gray;">
+            {{ form.username.help_text }}
+        </div>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label>Email:</label><br>
+        {{ form.email }}
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label>Password:</label><br>
+        {{ form.password1 }}
+        <div style="font-size: 12px; color: gray;">
+            {{ form.password1.help_text }}
+        </div>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label>Confirm Password:</label><br>
+        {{ form.password2 }}
+        <div style="font-size: 12px; color: gray;">
+            {{ form.password2.help_text }}
+        </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button type="submit" style="padding: 12px 30px; font-size: 18px;">
+            Register
+        </button>
+    </div>
+
+</form>
+
+{% endblock %}

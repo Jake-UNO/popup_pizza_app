@@ -1,0 +1,19 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+  Add Product
+{% endblock %}
+
+{% block content %}
+  <h1>Add Product</h1>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Product</button>
+  </form>
+
+  <p>
+    <a href="{% url 'shop:product_list' %}" class="button light">Back to Menu</a>
+  </p>
+{% endblock %}

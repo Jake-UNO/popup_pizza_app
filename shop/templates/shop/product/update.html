@@ -1,0 +1,21 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+  Edit Product
+{% endblock %}
+
+{% block content %}
+  <h1>Edit Product</h1>
+
+  <p><strong>Editing:</strong> {{ product.product_name }}</p>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+  </form>
+
+  <p>
+    <a href="{% url 'shop:product_detail' product.id %}">Back to product</a>
+  </p>
+{% endblock %}

@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block title %}
-    {% if category %}{{ category.name }}{% else %}Products{% endif %}
+    Popup Pizza Menu
 {% endblock %}
 
 {% block content %}
     <div id="sidebar">
-        <h3>Menu</h3>
+        <h3>Categories</h3>
         <ul>
             <li {% if not category %}class="selected"{% endif %}>
-                <a href="{% url "shop:product_list" %}">All Pizzas</a>
+                <a href="{% url 'shop:product_list' %}">All</a>
             </li>
             {% for c in categories %}
                 <li {% if category.slug == c.slug %}class="selected"{% endif %}>
@@ -19,26 +19,27 @@
             {% endfor %}
         </ul>
     </div>
-    <div id="main" class="product-list">
-        {% if category %}
-    <h1>{{ category.name }}</h1>
-{% else %}
-    <div style="text-align:center; padding:10px 0 25px 0;">
-        <h1 style="margin-bottom:10px;">Take-and-Bake Pizza in Omaha</h1>
-        <p style="font-size:18px; color:#555; margin-top:0;">
-            Fresh-made pizzas ready for pickup, baking, and enjoying at home.
-        </p>
-    </div>
-{% endif %}
-                {% for product in products %}
-            <div class="item">
-    <a href="{{ product.get_absolute_url }}">
-        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-    </a>
-    <a href="{{ product.get_absolute_url }}">{{ product.product_name }}</a><br>
-    <p>{{ product.description }}</p>
-    <p style="font-weight:bold; font-size:18px;">${{ product.price }}</p>
-</div>
-        {% endfor %}
+
+    <div id="main">
+        <h1>Menu</h1>
+
+        {% if request.user.is_staff %}
+            <p>
+                <a href="{% url 'shop:product_create' %}" class="button">Add Product</a>
+            </p>
+        {% endif %}
+
+        <div class="product-list">
+            {% for product in products %}
+                <div class="item">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                    </a>
+                    <a href="{{ product.get_absolute_url }}">{{ product.product_name }}</a><br>
+                    <p>{{ product.description|truncatewords:20 }}</p>
+                    ${{ product.price }}
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
