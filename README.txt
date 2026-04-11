@@ -1,4 +1,4 @@
-This application creates a very simple online retail store.
+HELLO!!  This application creates a very simple online retail store.
 The application uses Django 'sessions' to manage the cart. The Django 4.0 by example textbook also includes a
 version of this application for your reference. This version is simpler than the version detailed in the textbook, however.
 The shopping cart has specific items defined in the settings.py file. Be sure to view the file and search for
